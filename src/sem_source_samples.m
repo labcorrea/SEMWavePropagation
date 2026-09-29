@@ -1,0 +1,16 @@
+function values = sem_source_samples(source, queryTime)
+%SEM_SOURCE_SAMPLES Interpolate a sampled source; return zero outside it.
+% source.waveform.time and source.waveform.values are matching sample arrays.
+if ~isfield(source,'waveform') || ~isstruct(source.waveform) || ...
+        ~isfield(source.waveform,'time') || ~isfield(source.waveform,'values')
+    error('sem_source_samples:MissingWaveform', ...
+        'source.waveform must contain time and values arrays');
+end
+time = source.waveform.time(:);
+samples = source.waveform.values(:);
+assert(numel(time) >= 2 && numel(time) == numel(samples) && ...
+    all(isfinite(time)) && all(isfinite(samples)) && all(diff(time) > 0) && ...
+    isreal(time) && isreal(samples), ...
+    'Waveform time and values must be real, finite, matched, and time must increase');
+values = interp1(time,samples,queryTime,'linear',0);
+end

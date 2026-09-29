@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software in research, please cite it using these metadata."
+title: "SEMWavePropagation"
+authors:
+  - family-names: "Correa"
+    given-names: "Lucio de Abreu"
+    email: "labcorrea@gmail.com"
+repository-code: "https://github.com/labcorrea/SEMWavePropagation"
+url: "https://github.com/labcorrea/SEMWavePropagation"
+license: "Apache-2.0"
